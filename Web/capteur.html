@@ -105,8 +105,11 @@
                                     <!-- Formulaire pour la modification d'un capteur -->
                                         <h2>Modifier un capteur existant</h2>
                                         <form id="updateCapteurForm">
-                                            <label for="updateCapteurId">ID du capteur à modifier :</label>
-                                            <input type="text" id="updateCapteurId" name="updateCapteurId"><br>
+                                            <hr>
+                                            <label for="updateCapteurName">Sélectionner le Capteur à modifier :</label>
+                                        <select id="updateCapteurName" name="updateCapteurName">
+                                            <!-- Les options seront ajoutées dynamiquement via JavaScript -->
+                                        </select><br>
                                             <label for="type">Type :</label>
                                             <input type="text" id="updatetypeCap" name="type"><br>
                                             <label for="Nbre Valeurs">Nbre de valeurs Lues :</label>
@@ -121,9 +124,12 @@
                                     
                                     <!-- Formulaire pour la suppression d'un capteur -->
                                     <h2>Supprimer un capteur</h2>
+                                    <hr>
                                     <form id="deleteCapteurForm">
-                                        <label for="deleteCapteurId">ID du capteur à supprimer :</label>
-                                        <input type="text" id="deleteCapteurId" name="deleteCapteurId"><br>
+                                        <label for="deleteCapteurName">Sélectionner le capteur à supprimer :</label>
+                                        <select id="deleteCapteurName" name="deleteCapteurName">
+                                            <!-- Les options seront ajoutées dynamiquement via JavaScript -->
+                                        </select><br>
                                         <button type="submit">Supprimer Capteur</button>
                                     </form>
                                 </div>

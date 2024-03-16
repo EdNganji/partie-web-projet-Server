@@ -24,11 +24,36 @@ $(document).ready(function() {
         });
     });
 
+    function loadAppareilNames() {
+        $.ajax({
+            type: 'GET',
+            url: 'http://192.168.1.104:8000/api/channel/get',
+            dataType: 'json',
+            success: function(data) {
+                $('#updateChannelName').empty(); // Effacer les options précédentes
+                data.forEach(function(Channel) {
+                    $('#updateChannelName').append('<option value="' + Channel.id + '">' + Channel.name + '</option>');
+                });
+                $('#deleteChannelName').empty(); // Effacer les options précédentes
+                data.forEach(function(Channel) {
+                    $('#deleteChannelName').append('<option value="' + Channel.id + '">' + Channel.name + '</option>');
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Erreur lors du chargement des noms des Channels :', errorThrown);
+            }
+        });
+    }
+    
+    // Appel initial pour charger la liste des noms d'appareils
+    loadAppareilNames();
+    
+
     // Fonction pour gérer la modification d'un channel
     $('#updateChannelForm').submit(function(event) {
         event.preventDefault();
         
-        var channelId = $('#updateChannelId').val(); // Récupérer l'ID de l'appareil à modifier
+        var channelId = $('#updateChannelName').val(); // Récupérer l'ID de l'appareil à modifier
 
        // Récupérer les détails du channel à partir de son ID
          $.ajax({
@@ -77,7 +102,7 @@ $(document).ready(function() {
      $('#deleteChannelForm').submit(function(event) {
         event.preventDefault();
         
-        var channelId = $('#deleteChannelId').val(); // Récupérer l'ID de l'appareil à supprimer
+        var channelId = $('#deleteChannelName').val(); // Récupérer l'ID de l'appareil à supprimer
 
        // Récupérer les détails du channel à partir de son ID
          $.ajax({
@@ -128,12 +153,12 @@ $(document).ready(function() {
     function fetchChannels() {
         $.ajax({
             type: 'GET',
-            url: 'http://192.168.1.107:8000/api/channel/get',
+            url: 'http://192.168.1.104:8000/api/channel/get',
             dataType: 'json',
             success: function(data) {
                 $('#channelList').empty(); // Effacer la liste précédente
                 $.each(data, function(_, channel) {
-                    $('#channelList').append('<tr><td>' + channel.id + '</td><td>' + channel.name + '</td><td>' + channel.ipAdress + '</td></tr>');
+                    $('#channelList').append('<tr><td>' + channel.id + '</td><td>' + channel.name + '</td><td>' + channel.unit + '</td></tr>');
                 });
             },
             error: function(jqXHR, textStatus, errorThrown) {

@@ -104,8 +104,10 @@
                                     <!-- Formulaire pour la modification d'un actionneur -->
                                         <h2>Modifier un actionneur existant</h2>
                                         <form id="updateActionneurForm">
-                                            <label for="updateactionneurId">ID de l'actionneur à modifier :</label>
-                                            <input type="text" id="updateActionneurId" name="updateActionneurId"><br>
+                                            <label for="updateActionneurName">Sélectionner l'Actionneur à modifier :</label>
+                                        <select id="updateActionneurName" name="updateActionneurName">
+                                            <!-- Les options seront ajoutées dynamiquement via JavaScript -->
+                                        </select><br>
                                             <label for="updatetType">Nouveau type d'action :</label>
                                             <input type="text" id="updateTypeAct" name="updateType"><br>
                                             <button type="submit">Modifier Actionneur</button>
@@ -119,8 +121,10 @@
                                     <!-- Formulaire pour la suppression d'un actionneur -->
                                     <h2>Supprimer un actionneur</h2>
                                     <form id="deleteActionneurForm">
-                                        <label for="deleteActionneurId">ID de l'actionneur à supprimer :</label>
-                                        <input type="text" id="deleteActionneurId" name="deleteActionneurId"><br>
+                                        <label for="deleteActionneurName">Sélectionner l'Actionneur à supprimer :</label>
+                                        <select id="deleteActionneurName" name="deleteActionneurName">
+                                            <!-- Les options seront ajoutées dynamiquement via JavaScript -->
+                                        </select><br>
                                         <button type="submit">Supprimer Actionneur</button>
                                     </form>
                                 </div>

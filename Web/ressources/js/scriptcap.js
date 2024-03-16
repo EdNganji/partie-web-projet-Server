@@ -28,11 +28,36 @@ $(document).ready(function() {
         });
     });
 
+    function loadAppareilNames() {
+        $.ajax({
+            type: 'GET',
+            url: 'http://192.168.1.104:8000/api/capteur/get',
+            dataType: 'json',
+            success: function(data) {
+                $('#updateCapteurName').empty(); // Effacer les options précédentes
+                data.forEach(function(Capteur) {
+                    $('#updateCapteurName').append('<option value="' + Capteur.id + '">' + Capteur.name + '</option>');
+                });
+                $('#deleteCapteurName').empty(); // Effacer les options précédentes
+                data.forEach(function(Capteur) {
+                    $('#deleteCapteurName').append('<option value="' + Capteur.id + '">' + Capteur.name + '</option>');
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Erreur lors du chargement des noms des Capteurs :', errorThrown);
+            }
+        });
+    }
+    
+    // Appel initial pour charger la liste des noms d'Capteurs
+    loadAppareilNames();
+    
+
     // Fonction pour gérer la modification d'un capteur
     $('#updateCapteurForm').submit(function(event) {
         event.preventDefault();
         
-        var capteurId = $('#updateCapteurId').val(); // Récupérer l'ID du Capteur à modifier
+        var capteurId = $('#updateCapteurName').val(); // Récupérer l'ID du Capteur à modifier
 
        // Récupérer les détails du capteur à partir de son ID
          $.ajax({
@@ -84,7 +109,7 @@ $(document).ready(function() {
     $('#deleteCapteurForm').submit(function(event) {
         event.preventDefault();
         
-        var capteurId = $('#deleteCapteurId').val(); // Récupérer l'ID du Capteur à modifier
+        var capteurId = $('#deleteCapteurName').val(); // Récupérer l'ID du Capteur à modifier
 
        // Récupérer les détails du capteur à partir de son ID
          $.ajax({
@@ -132,9 +157,6 @@ $(document).ready(function() {
     });
     
     
-
-    // Ajoutez des fonctions similaires pour les formulaires de modification et de suppression
-
     // Fonction pour récupérer et afficher la liste d'capteurs
     function fetchCapteurs() {
         $.ajax({
@@ -144,7 +166,7 @@ $(document).ready(function() {
             success: function(data) {
                 $('#capteurList').empty(); // Effacer la liste précédente
                 $.each(data, function(_, capteur) {
-                    $('#capteurList').append('<tr><td>' + capteur.id + '</td><td>' + capteur.name + '</td><td>' + capteur.ipAdress + '</td></tr>');
+                    $('#capteurList').append('<tr><td>' + capteur.id + '</td><td>' + capteur.name + '</td><td>' + capteur.typeMesure + '</td></tr>');
                 });
             },
             error: function(jqXHR, textStatus, errorThrown) {

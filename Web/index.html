@@ -104,16 +104,19 @@
                                 <div class="col-lg-6">
                                     
                                     <!-- Formulaire pour la modification d'un appareil -->
-                                        <h2>Modifier un appareil existant</h2>
-                                        <form id="updateAppareilForm">
-                                            <label for="updateAppareilId">ID de l'appareil à modifier :</label>
-                                            <input type="text" id="updateAppareilId" name="updateAppareilId"><br>
-                                            <label for="updateType">Nouveau type d'appareil:</label>
-                                            <input type="text" id="updateTypeCap" name="updateEtat"><br>
-                                            <label for="updateEtat">Nouveau etat de fonctionnement:</label>
-                                            <input type="text" id="updateEtatCap" name="updateEtat"><br>
-                                            <button type="submit">Modifier Appareil</button>
-                                        </form>
+                                    <h2>Modifier un appareil existant</h2>
+                                    <form id="updateAppareilForm">
+                                        <label for="updateAppareilName">Sélectionner l'appareil à modifier :</label>
+                                        <select id="updateAppareilName" name="updateAppareilName">
+                                            <!-- Les options seront ajoutées dynamiquement via JavaScript -->
+                                        </select><br>
+                                        <label for="updateType">Nouveau type d'appareil :</label>
+                                        <input type="text" id="updateTypeCap" name="updateType"><br>
+                                        <label for="updateEtat">Nouveau état de fonctionnement :</label>
+                                        <input type="text" id="updateEtatCap" name="updateEtat"><br>
+                                        <button type="submit">Modifier Appareil</button>
+                                    </form>
+                                    
 
                                         <hr><br>
                                     </div>
@@ -123,8 +126,10 @@
                                     <!-- Formulaire pour la suppression d'un appareil -->
                                     <h2>Supprimer un appareil</h2>
                                     <form id="deleteAppareilForm">
-                                        <label for="deleteAppareilId">ID de l'appareil à supprimer :</label>
-                                        <input type="text" id="deleteAppareilId" name="deleteAppareilId"><br>
+                                        <label for="deleteAppareilName">Sélectionner l'appareil à supprimer :</label>
+                                        <select id="deleteAppareilName" name="deleteAppareilName">
+                                            <!-- Les options seront ajoutées dynamiquement via JavaScript -->
+                                        </select><br>
                                         <button type="submit">Supprimer Appareil</button>
                                     </form>
                                 </div>

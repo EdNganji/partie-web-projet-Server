@@ -25,11 +25,36 @@ $(document).ready(function() {
         });
     });
 
+    function loadAppareilNames() {
+        $.ajax({
+            type: 'GET',
+            url: 'http://192.168.1.104:8000/api/actionneur/get',
+            dataType: 'json',
+            success: function(data) {
+                $('#updateActionneurName').empty(); // Effacer les options précédentes
+                data.forEach(function(Actionneur) {
+                    $('#updateActionneurName').append('<option value="' + Actionneur.id + '">' + Actionneur.name + '</option>');
+                });
+                $('#deleteActionneurName').empty(); // Effacer les options précédentes
+                data.forEach(function(Actionneur) {
+                    $('#deleteActionneurName').append('<option value="' + Actionneur.id + '">' + Actionneur.name + '</option>');
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Erreur lors du chargement des noms d\'Actionneurs :', errorThrown);
+            }
+        });
+    }
+    
+    // Appel initial pour charger la liste des noms d'appareils
+    loadAppareilNames();
+    
+
     // Fonction pour gérer la modification d'un appareil
-    $('#updateActuateurForm').submit(function(event) {
+    $('#updateActionneurForm').submit(function(event) {
         event.preventDefault();
         
-        var actionneurId = $('#updateAppareilId').val(); // Récupérer l'ID de l'actionneur à modifier
+        var actionneurId = $('#updateActionneurName').val(); // Récupérer l'ID de l'actionneur à modifier
 
        // Récupérer les détails de l'actionneur à partir de son ID
          $.ajax({
@@ -76,11 +101,11 @@ $(document).ready(function() {
         });
     });
     
-    // Fonction pour gérer la suppression d'un actuateur
-    $('#deleteActuateurForm').submit(function(event) {
+    // Fonction pour gérer la suppression d'un Actionneur
+    $('#deleteActionneurForm').submit(function(event) {
         event.preventDefault();
         
-        var actionneurId = $('#deleteActuateurId').val(); // Récupérer l'ID de l'actionneur à modifier
+        var actionneurId = $('#deleteActionneurName').val(); // Récupérer l'ID de l'actionneur à modifier
 
        // Récupérer les détails de l'actionneur à partir de son ID
          $.ajax({

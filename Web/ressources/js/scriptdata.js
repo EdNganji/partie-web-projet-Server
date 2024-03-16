@@ -4,7 +4,7 @@ $(document).ready(function() {
     function fetchLectures() {
         $.ajax({
             type: 'GET',
-            url: 'http://192.168.2.107:8000/api/data/list',
+            url: 'http://192.168.1.104:8000/api/data/list',
             dataType: 'json',
             success: function(data) {
                 $('#lectureList').empty(); // Effacer la liste précédente
@@ -26,7 +26,7 @@ $(document).ready(function() {
 
 // Récupérer les données de l'API
 function fetchData() {
-    return fetch('http://192.168.2.107:8000/api/data')
+    return fetch('http://192.168.1.104:8000/api/data')
         .then(response => response.json())
         .then(data => data);
 }

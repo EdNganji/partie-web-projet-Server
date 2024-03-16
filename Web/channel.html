@@ -102,8 +102,11 @@
                                     <!-- Formulaire pour la modification d'un channel -->
                                         <h2>Modifier un channel existant</h2>
                                         <form id="updateChannelForm">
-                                            <label for="updateChannelId">ID du channel à modifier :</label>
-                                            <input type="text" id="updateChannelId" name="updateChannelId"><br>
+                                            <hr>
+                                            <label for="updateChannelName">Sélectionner le channel à modifier :</label>
+                                        <select id="updateChannelName" name="updateChannelName">
+                                            <!-- Les options seront ajoutées dynamiquement via JavaScript -->
+                                        </select><br>
                                             <label for="updateUnit">Nouvelle Unité:</label>
                                             <input type="text" id="updateUnit" name="updateUnit"><br>
                                             <button type="submit">Modifier Channel</button>
@@ -117,8 +120,11 @@
                                     <!-- Formulaire pour la suppression d'un appareil -->
                                     <h2>Supprimer un channel</h2>
                                     <form id="deleteChannelForm">
-                                        <label for="deleteChannelId">ID du channel à supprimer :</label>
-                                        <input type="text" id="deleteChannelId" name="deletechannelId"><br>
+                                        <hr>
+                                        <label for="deleteChannelName">Sélectionner le channel à supprimer :</label>
+                                        <select id="deleteChannelName" name="deleteChannelName">
+                                            <!-- Les options seront ajoutées dynamiquement via JavaScript -->
+                                        </select><br>
                                         <button type="submit">Supprimer Appareil</button>
                                     </form>
                                 </div>
@@ -136,16 +142,16 @@
                 <div class="row">
                     <div class="col-lg-12">
                         
-                            <h2>Liste des Appareils</h2>
-                            <table id="appareilTable" width="100%">
+                            <h2>Liste des channels</h2>
+                            <table id="channelTable" width="100%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Nom</th>
-                                        <th>Adresse IP</th>
+                                        <th>Unit</th>
                                     </tr>
                                 </thead>
-                                <tbody id="appareilList">
+                                <tbody id="channelList">
                                     <!-- Les appareils seront affichés ici -->
                                 </tbody>
                             </table>
