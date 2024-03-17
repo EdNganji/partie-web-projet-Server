@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-    <title>Gestion Appareils</title>
+    <title>Gestion actionneurs</title>
 
 
     
@@ -52,7 +52,7 @@
                         
                             
                             <ul class="nav">
-                                <li class="scroll-to-section"><a href="index.html" class="active">Appareils</a></li>
+                                <li class="scroll-to-section"><a href="index.html" class="active">actionneurs</a></li>
                                 <li class="scroll-to-section"><a href="capteur.html" class="active">Capteurs</a></li>
                                 <li class="scroll-to-section"><a href="actuateur.html" class="active">Actuateur</a></li>
                                 <li class="scroll-to-section"><a href="channel.html" class="active">Channel</a></li>
@@ -80,20 +80,18 @@
                             <div class="thumb">
                                 
 
-                                    <!-- Formulaire pour l'ajout d'un appareil -->
+                                    <!-- Formulaire pour l'ajout d'un actionneur -->
                                     <h2>Ajouter un nouvel actuateur</h2>
-                                    <form id="addAppareilForm">
-                                        <label for="idAppareil">ID appareil :</label>
+                                    <form id="addActionneurForm">
+                                        <label for="idAppareil">ID Appareil:</label>
                                         <input type="text" id="idAppareil" name="idAppareil"><br>
                                         <label for="name">Nom :</label>
                                         <input type="text" id="name" name="name"><br>
                                         <label for="type">Type d'Action:</label>
                                         <input type="text" id="type" name="type"><br>
-                                        <label for="Nbre Valeurs">Puissance</label>
-                                        <input type="number" id="nbreChannel" name="nbreChannel" step="1"><br>
                                         <label for="active">Actif :</label>
                                         <input type="checkbox" id="active" name="active" checked><br>
-                                        <button type="submit" id="form-submit" class="main-dark-button">Ajouter Appareil</button>
+                                        <button type="submit" id="form-submit" class="main-dark-button">Ajouter Actionneur</button>
                                     </form>
                             </div>
                         </div>
@@ -103,15 +101,14 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     
-                                    <!-- Formulaire pour la modification d'un appareil -->
-                                        <h2>Modifier un appareil existant</h2>
-                                        <form id="updateAppareilForm">
-                                            <label for="updateAppareilId">ID de l'appareil à modifier :</label>
-                                            <input type="text" id="updateAppareilId" name="updateAppareilId"><br>
-                                            <label for="updateAdresseIp">Nouvelle adresse IP :</label>
-                                            <input type="text" id="updateAdresseIp" name="updateAdresseIp"><br>
-                                            <!-- Ajoutez d'autres champs pour les modifications -->
-                                            <button type="submit">Modifier Appareil</button>
+                                    <!-- Formulaire pour la modification d'un actionneur -->
+                                        <h2>Modifier un actionneur existant</h2>
+                                        <form id="updateActionneurForm">
+                                            <label for="updateactionneurId">ID de l'actionneur à modifier :</label>
+                                            <input type="text" id="updateActionneurId" name="updateActionneurId"><br>
+                                            <label for="updatetType">Nouveau type d'action :</label>
+                                            <input type="text" id="updateTypeAct" name="updateType"><br>
+                                            <button type="submit">Modifier Actionneur</button>
                                         </form>
 
                                         <hr><br>
@@ -119,12 +116,12 @@
                                 </div>
                                 <div class="col-lg-6">
                                     
-                                    <!-- Formulaire pour la suppression d'un appareil -->
-                                    <h2>Supprimer un appareil</h2>
-                                    <form id="deleteAppareilForm">
-                                        <label for="deleteAppareilId">ID de l'appareil à supprimer :</label>
-                                        <input type="text" id="deleteAppareilId" name="deleteAppareilId"><br>
-                                        <button type="submit">Supprimer Appareil</button>
+                                    <!-- Formulaire pour la suppression d'un actionneur -->
+                                    <h2>Supprimer un actionneur</h2>
+                                    <form id="deleteActionneurForm">
+                                        <label for="deleteActionneurId">ID de l'actionneur à supprimer :</label>
+                                        <input type="text" id="deleteActionneurId" name="deleteActionneurId"><br>
+                                        <button type="submit">Supprimer Actionneur</button>
                                     </form>
                                 </div>
                                 
@@ -141,8 +138,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         
-                            <h2>Liste des Appareils</h2>
-                            <table id="appareilTable" width="100%">
+                            <h2>Liste des actionneurs</h2>
+                            <table id="actionneurTable" width="100%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -150,8 +147,8 @@
                                         <th>Adresse IP</th>
                                     </tr>
                                 </thead>
-                                <tbody id="appareilList">
-                                    <!-- Les appareils seront affichés ici -->
+                                <tbody id="actionneurList">
+                                    <!-- Les actionneurs seront affichés ici -->
                                 </tbody>
                             </table>
                             <span><span>

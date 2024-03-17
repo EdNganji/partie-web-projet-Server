@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    // Fonction pour gérer l'ajout d'un appareil
+    // Fonction pour gérer l'ajout d'un capteur
     $('#addCapteurForm').submit(function(event) {
         event.preventDefault();
 
@@ -15,7 +15,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'POST',
-            url: 'http://192.168.2.107:8000/api/capteur',
+            url: 'http://192.168.1.104:8000/api/capteur',
             contentType: 'application/json',
             data: JSON.stringify(formData),
             success: function(responseData) {
@@ -32,20 +32,20 @@ $(document).ready(function() {
     $('#updateCapteurForm').submit(function(event) {
         event.preventDefault();
         
-        var appareilId = $('#updateCapteurId').val(); // Récupérer l'ID du Capteur à modifier
+        var capteurId = $('#updateCapteurId').val(); // Récupérer l'ID du Capteur à modifier
 
        // Récupérer les détails du capteur à partir de son ID
          $.ajax({
             type: 'GET',
-            url: 'http://192.168.2.107:8000/api/capteur/get',
+            url: 'http://192.168.1.104:8000/api/capteur/get',
             dataType: 'json',
             success: function(data) {
-                var appareil = data.find(function(item) {
-                    return item.id === appareilId;
+                var capteur = data.find(function(item) {
+                    return item.id === capteurId;
                 });
 
-                if (!appareil) {
-                    console.error('Appareil avec ID ' + appareilId + ' non trouvé.');
+                if (!capteur) {
+                    console.error('capteur avec ID ' + capteurId + ' non trouvé.');
                     return;
                 }
 
@@ -53,22 +53,22 @@ $(document).ready(function() {
 
         var formData = {
 
-            idAppareil: appareil.idAppareil,
-            name: appareil.name,
+            idcapteur: capteur.idcapteur,
+            name: capteur.name,
             typeMesure: $('#updateTypeCap').val(), 
             nbreChannel: $('#updateNbreChannel').val(),
-            active: appareil.active
+            active: capteur.active
 
         };
 
 
         $.ajax({
             type: 'POST',
-            url: 'http://192.168.2.107:8000/api/capteur',
+            url: 'http://192.168.1.104:8000/api/capteur/update',
             contentType: 'application/json',
             data: JSON.stringify(formData),
             success: function(responseData) {
-                alert('Appareil ajouté avec succès ! ID : ' + responseData);
+                alert('capteur ajouté avec succès ! ID : ' + responseData);
                 $('#addCapteurForm')[0].reset(); // Réinitialiser le formulaire après succès
             }
         });
@@ -78,15 +78,68 @@ $(document).ready(function() {
             }
         });
     });
+
+
+    // Fonction pour gérer la suppression d'un capteur
+    $('#deleteCapteurForm').submit(function(event) {
+        event.preventDefault();
+        
+        var capteurId = $('#deleteCapteurId').val(); // Récupérer l'ID du Capteur à modifier
+
+       // Récupérer les détails du capteur à partir de son ID
+         $.ajax({
+            type: 'GET',
+            url: 'http://192.168.1.104:8000/api/capteur/get',
+            dataType: 'json',
+            success: function(data) {
+                var capteur = data.find(function(item) {
+                    return item.id === capteurId;
+                });
+
+                if (!capteur) {
+                    console.error('capteur avec ID ' + capteurId + ' non trouvé.');
+                    return;
+                }
+
+
+
+        var formData = {
+
+            idcapteur: capteur.idcapteur,
+            name: capteur.name,
+            typeMesure: capteur.typeMesure,
+            nbreChannel: capteur.nbreChannel,
+            active: capteur.active
+
+        };
+
+
+        $.ajax({
+            type: 'POST',
+            url: 'http://192.168.1.104:8000/api/capteur/drop',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function(responseData) {
+                alert('capteur supprimé avec succès ! ID : ' + responseData);
+                $('#deleteCapteurForm')[0].reset(); // Réinitialiser le formulaire après succès
+            }
+        });
+    },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Erreur lors de la suppression du capteur : ' + errorThrown);
+            }
+        });
+    });
+    
     
 
     // Ajoutez des fonctions similaires pour les formulaires de modification et de suppression
 
-    // Fonction pour récupérer et afficher la liste d'appareils
+    // Fonction pour récupérer et afficher la liste d'capteurs
     function fetchCapteurs() {
         $.ajax({
             type: 'GET',
-            url: 'http://192.168.2.107:8000/api/capteur/get',
+            url: 'http://192.168.1.104:8000/api/capteur/get',
             dataType: 'json',
             success: function(data) {
                 $('#capteurList').empty(); // Effacer la liste précédente
@@ -100,7 +153,7 @@ $(document).ready(function() {
         });
     }
 
-    // Appel initial pour récupérer et afficher la liste d'appareils
+    // Appel initial pour récupérer et afficher la liste d'capteurs
     fetchCapteurs();
 
     

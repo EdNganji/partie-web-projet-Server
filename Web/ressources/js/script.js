@@ -13,7 +13,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'POST',
-            url: 'http://192.168.2.107:8000/api/appareil',
+            url: 'http://192.168.1.104:8000/api/appareil',
             contentType: 'application/json',
             data: JSON.stringify(formData),
             success: function(responseData) {
@@ -35,7 +35,7 @@ $(document).ready(function() {
        // Récupérer les détails de l'appareil à partir de son ID
          $.ajax({
             type: 'GET',
-            url: 'http://192.168.2.107:8000/api/appareil/get',
+            url: 'http://192.168.1.104:8000/api/appareil/get',
             dataType: 'json',
             success: function(data) {
                 var appareil = data.find(function(item) {
@@ -63,17 +63,69 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'POST',
-            url: 'http://192.168.2.107:8000/api/appareil',
+            url: 'http://192.168.1.104:8000/api/appareil',
             contentType: 'application/json',
             data: JSON.stringify(formData),
             success: function(responseData) {
                 alert('Appareil ajouté avec succès ! ID : ' + responseData);
-                $('#addAppareilForm')[0].reset(); // Réinitialiser le formulaire après succès
+                $('#updateAppareilForm')[0].reset(); // Réinitialiser le formulaire après succès
             }
         });
     },
             error: function(jqXHR, textStatus, errorThrown) {
-                alert('Erreur lors de l\'ajout de l\'appareil : ' + errorThrown);
+                alert('Erreur lors de la modification de l\'appareil : ' + errorThrown);
+            }
+        });
+    });
+
+    // Fonction pour gérer la suppression d'un appareil
+    $('#deleteAppareilForm').submit(function(event) {
+        event.preventDefault();
+        
+        var appareilId = $('#deleteAppareilId').val(); // Récupérer l'ID de l'appareil à modifier
+
+       // Récupérer les détails de l'appareil à partir de son ID
+         $.ajax({
+            type: 'GET',
+            url: 'http://192.168.1.104:8000/api/appareil/get',
+            dataType: 'json',
+            success: function(data) {
+                var appareil = data.find(function(item) {
+                    return item.id === appareilId;
+                });
+
+                if (!appareil) {
+                    console.error('Appareil avec ID ' + appareilId + ' non trouvé.');
+                    return;
+                }
+
+
+
+        var formData = {
+            
+            
+            ipAdress: appareil.ipAdress,
+            name: appareil.name,
+            type: appareil.type, 
+            etatFonct: appareil.etatFonct, 
+            active: appareil.active
+
+        };
+
+
+        $.ajax({
+            type: 'POST',
+            url: 'http://192.168.1.104:8000/api/appareil',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function(responseData) {
+                alert( responseData);
+                $('#deleteAppareilForm')[0].reset(); // Réinitialiser le formulaire après succès
+            }
+        });
+    },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Erreur lors de la supression de l\'appareil : ' + errorThrown);
             }
         });
     });
@@ -85,7 +137,7 @@ $(document).ready(function() {
     function fetchAppareils() {
         $.ajax({
             type: 'GET',
-            url: 'http://192.168.2.107:8000/api/appareil/get',
+            url: 'http://192.168.1.104:8000/api/appareil/get',
             dataType: 'json',
             success: function(data) {
                 $('#appareilList').empty(); // Effacer la liste précédente
